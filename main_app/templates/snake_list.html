@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="title pt-5">{{header}}</h1>
+<a class="button is-dark" href="{% url 'snakes_create' %}">Add Snakes</a>
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <input class="input" type="text" name="name" placeholder="name" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <a class="button is-dark" href="{% url 'snake_list' %}">Clear Search</a>
+</form>
+<div class="gallery">
+  {% for snake in snakes %}
+  <a href="{% url 'snakes_detail' snake.pk %}">
+    <div class="card">
+      <div class="card-image">
+          <img class="list" src="{{snake.img}}" alt="{{snake.name}}" />
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{snake.name}}</p>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+{% endblock %}
